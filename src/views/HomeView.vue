@@ -9,8 +9,10 @@
     <button type="button" class="btn btn-info">Info</button>
     <button type="button" class="btn btn-light">Light</button>
     <button type="button" class="btn btn-dark">Dark</button>
-
     <button type="button" class="btn btn-link">Link</button>
+     <ul>
+            <li v-for="todo in store.todos" :key="todo.id">{{ todo.text }}</li>
+        </ul>
  <div class="container">
     <div class="accordion" id="accordionExample">
   <div class="accordion-item">
@@ -58,11 +60,17 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import { useTodos } from '@/store/todo'
 
 export default {
   name: 'HomeView',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      store: useTodos()
+    }
   }
 }
 </script>
