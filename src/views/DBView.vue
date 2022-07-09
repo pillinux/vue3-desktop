@@ -2,7 +2,7 @@
     <div>
         <h3>DB</h3>
         <ul>
-            <li v-for="scontrino in db.getScontrini" :key="scontrino._id">
+            <li v-for="scontrino in list" :key="scontrino._id">
                 {{ scontrino.tipo }} - {{ scontrino.nome }}
                 <button @click="remove(scontrino)" class="btn btn-icon" type="button">DEL</button>
             </li>
@@ -24,6 +24,11 @@ export default {
             nome: '',
             db: useDB()
         }
+    },
+    computed: {
+        list(){
+            return this.db.$state.scontini
+        } 
     },
     methods: {
         put(){

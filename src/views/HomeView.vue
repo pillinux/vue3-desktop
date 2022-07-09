@@ -11,7 +11,7 @@
     <button type="button" class="btn btn-dark">Dark</button>
     <button type="button" class="btn btn-link">Link</button>
      <ul>
-            <li v-for="todo in store.todos" :key="todo.id">{{ todo.text }}</li>
+            <li v-for="todo in list" :key="todo.id">{{ todo.text }}</li>
         </ul>
  <div class="container">
     <div class="accordion" id="accordionExample">
@@ -70,6 +70,11 @@ export default {
   data() {
     return {
       store: useTodos()
+    }
+  },
+  computed: {
+    list(){
+      return this.store.$state.todos
     }
   }
 }
