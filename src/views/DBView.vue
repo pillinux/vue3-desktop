@@ -1,9 +1,9 @@
 <template>
     <div>
         <h3>DB</h3>
-        <ul>
-            <li v-for="scontrino in list" :key="scontrino._id">
-                {{ scontrino.tipo }} - {{ scontrino.nome }}
+        <ul class="list-unstyled">
+            <li v-for="(scontrino, index) in list" :key="scontrino._id">
+                {{ index + 1 }}: {{ scontrino._id }} {{ scontrino.tipo }} - {{ scontrino.nome }}
                 <button @click="remove(scontrino)" class="btn btn-icon" type="button">DEL</button>
             </li>
         </ul>
