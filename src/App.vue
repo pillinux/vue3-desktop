@@ -1,13 +1,17 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/todo">todo</router-link> |
-    <router-link to="/db">db</router-link>
-  </nav>
-  <router-view></router-view>
+  <NavBarVue/>
+  <div class="container">
+    <router-view></router-view>
+  </div>
 </template>
-
+<script>
+import NavBarVue from './components/NavBar.vue'
+export default {
+  components: {
+    NavBarVue
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -27,6 +31,6 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #42b983 !important;
 }
 </style>

@@ -1,61 +1,53 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <ul class="list-group">
-      <li v-for="movie in movies" :key="movie._id" class="list-group-item">{{ movie.tipo }} - {{ movie.nome }}</li>
-    </ul>
-    <div class="input-group mb-3">
-      <input v-model="nome" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button @click="put" class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    <!-- Button trigger modal -->
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div  ref="RefModalSample" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-     <button @click="read" class="btn btn-outline-primary" type="button">READ</button>
+  </div>
+</div>
   </div>
 </template>
 <script>
-import localDB from '@/store';
-
 
 export default {
-  data() {
-    return {
-      movies: [],
-      nome: ''
-    }
-  },
-
-  // `mounted` is a lifecycle hook which we will explain later
-  mounted() {
+  mounted(){
+    console.log(this);
+    const el = this.$refs["RefModalSample"]
     
-
-  },
-  methods: {
-    read() {
-      var $this = this
-      
-      
-      localDB.find({
-        selector: {tipo: "scontrino"}
-        }).then(function(results) {
-            console.log(results.docs)
-            $this.movies = results.docs
-        }).catch(function(error){
-          console.log(error);
-        }) 
-      /*
-      //.then(function(results){
-        console.log(results.docs);
-        this.$set('movies', results.docs);
-      });
-      */
-    },
-    put(){
-      const doc = {
-        _id: Date.now().toString(),
-        tipo: 'scontrino',
-        nome: this.nome
-      }
-      localDB.put(doc);
-    }
+    el.addEventListener("hide.bs.modal", function (event) {
+      // do something...
+      console.log(event);
+      alert("Hi there, you just close the modal windows!");
+    });
   }
 }
 </script>

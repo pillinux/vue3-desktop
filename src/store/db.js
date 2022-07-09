@@ -35,9 +35,9 @@ export const useDB = defineStore('db', {
     },
     actions: {
         // any amount of arguments, return a promise or not
-        sync() {
+        async sync() {
             const _this = this
-            localDB.find({
+            await localDB.find({
                 selector: { tipo: "scontrino" },
                 sort:['_id']
             }).then(function (results) {

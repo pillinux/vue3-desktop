@@ -2,11 +2,10 @@
     <div>
         <h3>TODO</h3>
         <ul>
-            <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
+            <li v-for="(todo, i) in todos" :key="i">{{ todo.text }} <button @click="remove(i)">X</button></li>
         </ul>
         <div class="input-group mb-3">
-        <input v-model="text" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button @click="put" class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <input  @keypress.enter="put"  v-model="text" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
     </div>
 </template>
@@ -25,9 +24,13 @@ export default {
   },
   // actions
   methods: {
-    put: function() {
+    remove(i) {
+      storeTodo.removeTodo(i)
+    },
+    put() {
         if (this.text!='') {
             storeTodo.addTodo(this.text)
+            this.text = ''
         }
     }
   }

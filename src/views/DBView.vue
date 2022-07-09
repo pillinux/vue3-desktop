@@ -8,8 +8,7 @@
             </li>
         </ul>
         <div class="input-group mb-3">
-        <input v-model="nome" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button @click="put" class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+        <input @keypress.enter="put" v-model="nome" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
         </div>
          <button @click="db.info" class="btn btn-outline-secondary" type="button" id="button-addon2">INFO</button>
        
@@ -37,6 +36,7 @@ export default {
                 tipo: 'scontrino',
                 nome: this.nome
             }
+            this.nome = ''
             console.log('put',doc);
             this.db.put(doc);
         },
@@ -47,21 +47,3 @@ export default {
     }
 }
 </script>
-
-<!--
-<script setup>
-import { useDB } from '@/store/db'
-const storeDB = useDB()
-const nome = ''
-const put = () => {
-    const doc = {
-        _id: Date.now().toString(),
-        tipo: 'scontrino',
-        nome: nome
-    }
-    console.log(doc);
-    storeDB.put(doc);
-}
-
-</script>
--->

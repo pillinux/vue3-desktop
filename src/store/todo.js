@@ -36,5 +36,9 @@ export const useTodos = defineStore('todos', {
       // you can directly mutate the state
       this.todos.push({ text, id: this.nextId++, isFinished: false })
     },
+    removeTodo(i) {
+      // you can directly mutate the state
+      this.todos.splice(i,1);
+    }
   }
 })
