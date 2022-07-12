@@ -6,7 +6,7 @@ PouchDB.plugin(PouchDBFind);
 const localDB = new PouchDB('movies');
 
 // remote CouchDB 
-const remoteDB = new PouchDB('http://localhost:5984/cliente1', {
+const remoteDB = new PouchDB('http://dev.contovendo.it:5984/cliente1', {
     auth: {
         username: 'admin',
         password: 'Emb57531!',
